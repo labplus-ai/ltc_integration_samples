@@ -1,10 +1,10 @@
 <?php
 /**
- * Przykład uruchomienia LabTest Checker w środowisku PHP
+ * Przykład API służącego do wygenerowania adresu umożliwiającego uruchomienie LabTest Checkera
  *
  * Poniższy przykład odczytuje numer zlecenia z adresu url, a następnie symuluje odczyt wyników badań dla tego zlecenia z bazy.
  * Odczytane wyniki są wysyłane do API Labplus, w celu uzyskania tokenu umożliwiającego uruchomienie LabTest Checkera
- * Po uzyskaniu tokena, renderowana jest strona z uruchomionym narzędziem LabTest Checker w formie <iframe>
+ * Po uzyskaniu tokena, zwracany jest adres umożliwiający uruchomienie LabTest Checkera w formie <iframe>
  *
  * Uwaga!
  * Poniższy kod skupia się na procesie komunikacji z API Labplus, należy go dostosować do systemu, w którym ma być osadzony.

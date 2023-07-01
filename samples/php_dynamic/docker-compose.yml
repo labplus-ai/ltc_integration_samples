@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   php-apache-environment:
-    container_name: php-apache
+    container_name: php_dynamic-apache
     image: php:8.0-apache
     volumes:
       - ./src:/var/www/html/
