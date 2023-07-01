@@ -1,0 +1,3 @@
+- Fill secrets in the index.php file (DO NOT COMMIT)
+- Run container: `docker compose up`
+- Open `localhost:8000` in the browser
