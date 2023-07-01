@@ -26,6 +26,8 @@ if ($token === null) {
 
     // Uzyskaj token z API Labplus
     $token = generateToken($examinations, $LTC_APP_KEY, $LTC_API_URL);
+
+    // todo - zapisz token w bazie i przypisz go do zlecenia
 }
 
 $iframeUrl = $LTC_API_URL . "/interview/" . $LTC_CLIENT_HASH . "?token=" . $token;
