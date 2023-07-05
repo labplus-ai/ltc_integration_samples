@@ -1,9 +1,11 @@
 version: '3.8'
 services:
   php-apache-environment:
-    container_name: php_dynamic-apache
-    image: php:8.0-apache
+    container_name: php_full-apache
+    build: .
     volumes:
       - ./src:/var/www/html/
+    env_file:
+      - .env
     ports:
       - 8000:80
