@@ -19,8 +19,8 @@ iframe {
     outline: none;
 }
 
-#labTestCheckerFrame {
-    min-height: 400px;
+#labTestCheckerFrameWrapper {
+    min-height: 600px;
 }
 
 .comment {
@@ -29,4 +29,27 @@ iframe {
     border-radius: 4px;
     color: #0a3622;
     border: 1px solid #59D5AE;
+}
+
+#ltcLoader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    color: #005c57;
+    font-weight: bolder;
+    font-size: 20px;
+    height: 100%;
+    margin-top: 24px;
+}
+
+#ltcLoader i {
+    font-size: 64px;
+}
+
+@media (min-width: 600px) {
+    #ltcLoader {
+        margin-top: 150px;
+    }
 }

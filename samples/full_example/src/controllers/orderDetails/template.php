@@ -2,7 +2,10 @@
 <html>
 <head>
     <title>Szczegóły zamówienia</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="global.css">
     <link rel="stylesheet" type="text/css" href="order_details.css">
 </head>
@@ -20,15 +23,14 @@
 <div class="container">
     <div class="card">
         <a href="/orders" class="mb-2">< Powrót do listy zleceń</a>
-        <h1>Zlecenie #<?php echo $orderId ?></h1>
         <div class="comment">
-            <div class="fw-bold">Komentarz do zlecenia:</div>
+            <div class="fw-bold">Komentarz do zlecenia #<?php echo $orderId ?>:</div>
             <div class="mt-1"><?php echo $orderDetails['comment'] ?></div>
         </div>
 
-        <?php if ($showLTCBanner) : ?>
+        <?php if ($LTCBannerUrl !== null) : ?>
             <div class="banner-wrapper">
-                <iframe src="<?php echo getenv('LTC_BANNER_URL') ?>?hash=<?php echo hash('sha256', $orderId) ?>"
+                <iframe src="<?php echo $LTCBannerUrl ?>?hash=<?php echo hash('sha256', $orderId) ?>"
                         id="ltc-banner-iframe" width="100%" height="170px"></iframe>
             </div>
         <?php endif; ?>
@@ -38,7 +40,7 @@
             <tr>
                 <th>Nazwa badania</th>
                 <th>Wynik</th>
-                <th>Jednostka</th>
+                <th class="d-none d-sm-table-cell">Jednostka</th>
                 <th>Norma</th>
             </tr>
             </thead>
@@ -48,7 +50,7 @@
                     <tr>
                         <td><?php echo $param['paramName'] ?></td>
                         <td><?php echo $param['paramValue'] ?></td>
-                        <td><?php echo $param['paramUnit'] ?></td>
+                        <td class="d-none d-sm-table-cell"><?php echo $param['paramUnit'] ?></td>
                         <td><?php echo $param['paramNormLow'] ?> - <?php echo $param['paramNormHigh'] ?></td>
                     </tr>
                 <?php endforeach; ?>
@@ -106,20 +108,30 @@
 
             if (msg.event === 'ltc_open') {
                 const labTestCheckerFrameWrapper = document.getElementById('labTestCheckerFrameWrapper');
+                const ltcLoader = document.getElementById('ltcLoader');
+
+                // Do not re-open frame twice
+                if (labTestCheckerFrameWrapper.style.display === "block") return;
+
                 labTestCheckerFrameWrapper.style.display = "block";
+                ltcLoader.style.display = "flex";
                 labTestCheckerFrameWrapper.scrollIntoView({behavior: 'smooth'});
 
                 fetch('/api?orderNumber=<?php echo $orderId ?>')
                     .then(response => response.json())
                     .then(res => {
+                        ltcLoader.style.display = "none";
                         openLabTestChecker(res.url);
                     })
             }
         }, false);
     </script>
     <div class="card" id="labTestCheckerFrameWrapper" style="display: none;">
-        <h1>Interpretacja wyników badań</h1>
-        <iframe id="labTestCheckerFrame" width="100%" height="600"></iframe>
+        <div id="ltcLoader" style="display: none">
+            <i class="fa-solid fa-fan fa-spin"></i>
+            <div>Trwa ładowanie, proszę czekać</div>
+        </div>
+        <iframe id="labTestCheckerFrame" width="100%"></iframe>
     </div>
     <div class="card">
         <h1>Dane zlecenia</h1>
@@ -146,7 +158,8 @@
 </div>
 <footer class="main-footer">
     <div class="container">
-        System odbioru wyników LAB+ stworzony do celów prezentacji technologii LabTest Checker. Żadne dane prezentowane w systemie nie są prawdziwymi danymi pacjentów.
+        System odbioru wyników LAB+ stworzony do celów prezentacji technologii LabTest Checker. Żadne dane prezentowane
+        w systemie nie są prawdziwymi danymi pacjentów.
     </div>
 </footer>
 </body>

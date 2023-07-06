@@ -10,9 +10,10 @@
     padding: 24px;
     border-radius: 5px;
     display: flex;
-    gap: 24px;
+    gap: 16px;
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
 }
 
 .order-item .order-title {
@@ -31,9 +32,21 @@
     border-color: #005C57;
     margin-top: 16px;
     white-space: nowrap;
+    width: 100%;
 }
 
 .btn-primary:hover {
     background-color: #014f4b;
     border-color: #014f4b;
+}
+
+@media (min-width: 768px) {
+    .order-item {
+        gap: 24px;
+        flex-direction: row;
+    }
+
+    .btn-primary {
+        width: auto;
+    }
 }

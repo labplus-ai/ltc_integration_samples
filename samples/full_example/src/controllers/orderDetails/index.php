@@ -11,7 +11,7 @@ $db = new MockedDatabase();
 $orderId = isset($_GET['id']) ? $_GET['id'] : null;
 $orderDetails = $db->getOrderDetails($orderId);
 
-$showLTCBanner = getLTCBannerVisibility($orderDetails);
+$LTCBannerUrl = getLTCBannerURL($orderDetails);
 
 // Pokaż ramkę z LabTest Checker dla zleceń które miały już wygenerowany token
 if ($orderDetails['ltcToken'] !== null) {
@@ -19,20 +19,17 @@ if ($orderDetails['ltcToken'] !== null) {
 }
 
 
-function getLTCBannerVisibility($orderDetails)
+function getLTCBannerURL($orderDetails)
 {
     $db = new MockedDatabase();
 
-    // Nie wyświetlaj banera dla zleceń, w których nie ma jeszcze wszystkich wyników
-    if (!$orderDetails['completed']) return false;
-
     // Nie wyświetlaj banera dla zleceń, dla których jest już wygenerowany token
-    if ($orderDetails['ltcToken'] !== null) return false;
+    if ($orderDetails['ltcToken'] !== null) return null;
 
     // Nie wyświetlaj banera dla zleceń starszych niż 30 dni
     $orderDate = new DateTime($orderDetails['orderDate']);
     $currentDate = new DateTime();
-    if ($currentDate->diff($orderDate)->days > 30 && $orderDate < $currentDate) return false;
+    if ($currentDate->diff($orderDate)->days > 30 && $orderDate < $currentDate) return null;
 
     // Nie wyświetlaj banera dla zleceń, w których nie ma żadnych badań możliwych do interpretacji
     $processableIds = $db->getProcessableParamsIds();
@@ -44,7 +41,10 @@ function getLTCBannerVisibility($orderDetails)
             }
         }
     }
-    return $hasProcessableParams;
+    if (!$hasProcessableParams) return null;
+
+    // Wyświetl różny baner w zależności od tego, czy w zleceniu sa już wszystkie wyniki badań
+    return $orderDetails['completed'] ? getenv('LTC_BANNER_URL') : getenv('LTC_BANNER_URL') . '/incomplete';
 }
 
 include "template.php"
