@@ -5,9 +5,12 @@
 
 Repozytorium zawiera przykład integracji dla systemu, w którym nie ma ekranu z podglądem wyników. W takim przypadku na liście zleceń prezentowana jest opcja interpretacji przy wybranych zleceniach.
 
+### Live demo:
+Demo dostępne pod adresem https://ltc-integration-only-list-example-o4czb46gna-ew.a.run.app/
+
 Dane logowania:
 - login: `labplus`
-- hasło: `veryStrongPassword'
+- hasło: `veryStrongPassword`
 
 Przykład jest bezstanowy, tj. nie posiada prawdziwej bazy danych - żadne akcje wykonane podczas korzystania z przykładu nie są zapisywane ani utrwalane.
 

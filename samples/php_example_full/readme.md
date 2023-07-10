@@ -5,11 +5,15 @@
 
 Repozytorium zawiera przykład integracji dla systemu odbioru wyników badań laboratoryjnych który składa się z listy zleceń oraz ekranu szczegółów danego zlecenia. LabTest Checker zintegrowany jest z ekranem szczegółów zlecenia.
 
+### Live demo:
+Demo dostępne pod adresem https://ltc-integration-full-example-o4czb46gna-ew.a.run.app/
+
 Dane logowania:
 - login: `labplus`
-- hasło: `veryStrongPassword'
+- hasło: `veryStrongPassword`
 
 Przykład jest bezstanowy, tj. nie posiada prawdziwej bazy danych - żadne akcje wykonane podczas korzystania z przykładu nie są zapisywane ani utrwalane.
+
 
 ### Uruchomienie kodu (Docker)
 Aby uruchomić projekt korzystając z Dockera należy:
