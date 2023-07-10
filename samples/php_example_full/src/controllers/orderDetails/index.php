@@ -31,17 +31,17 @@ function getLTCBannerURL($orderDetails)
     $currentDate = new DateTime();
     if ($currentDate->diff($orderDate)->days > 30 && $orderDate < $currentDate) return null;
 
-    // Nie wyświetlaj banera dla zleceń, w których nie ma żadnych badań możliwych do interpretacji
-    $processableIds = $db->getProcessableParamsIds();
-    $hasProcessableParams = false;
-    foreach ($processableIds as $processableParamId) {
+    // Sprawdź, czy w zleceniu jest przynajmniej jedno badanie możliwe do interpretacji
+    $processableIds = $db->getProcessableExaminationsIds();
+    $hasProcessableExamination = false;
+    foreach ($processableIds as $processableId) {
         foreach ($orderDetails['examinations'] as $examination) {
-            foreach ($examination['examinationParams'] as $param) {
-                if ($param['paramId'] === $processableParamId) $hasProcessableParams = true;
-            }
+            if ($examination['examinationId'] === $processableId) $hasProcessableExamination = true;
         }
     }
-    if (!$hasProcessableParams) return null;
+
+    // Nie wyświetlaj opcji interpretacji dla zleceń, w których nie ma żadnych badań możliwych do interpretacji
+    if (!$hasProcessableExamination) return null;
 
     // Wyświetl różny baner w zależności od tego, czy w zleceniu sa już wszystkie wyniki badań
     return $orderDetails['completed'] ? getenv('LTC_BANNER_URL') : getenv('LTC_BANNER_URL') . '/incomplete';

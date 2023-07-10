@@ -1,0 +1,8 @@
+iframe {
+    border: none;
+    outline: none;
+}
+
+#labTestCheckerFrameWrapper {
+    min-height: 600px;
+}

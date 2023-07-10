@@ -1,0 +1,60 @@
+@import "https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&display=swap";
+
+body {
+    font-family: 'Mulish', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #333333;
+}
+
+.main-header {
+    background: #005C57;
+    height: 75px;
+    width: 100%;
+    color: white;
+}
+
+.header-logo {
+    height: 50px;
+}
+
+.header-nav-item, .header-nav-item:hover, .header-nav-item:visited, .header-nav-item:active, .header-nav-item:focus {
+    color: white;
+    text-decoration: none;
+}
+
+.card {
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    margin-top: 48px;
+    margin-bottom: 48px;
+}
+
+.main-footer {
+    margin-top: auto;
+    padding-block: 24px;
+    background: #e7e7e7;
+    font-size: 14px;
+    text-align: center;
+}
+
+.card {
+    box-shadow: none;
+    padding: 16px 0;
+    border: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+@media (min-width: 600px) {
+    .card {
+        box-shadow: 0 1px 15px rgba(0, 0, 0, .1);
+        border-radius: 16px;
+        padding: 30px 40px 40px 40px;
+    }
+}

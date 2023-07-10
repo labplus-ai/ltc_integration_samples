@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   php-apache-environment:
-    container_name: php_full-apache
+    container_name: php_example_full-apache
     build: .
     volumes:
       - ./src:/var/www/html/
