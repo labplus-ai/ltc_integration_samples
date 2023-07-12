@@ -22,6 +22,7 @@ class MockedDatabase
         switch ($orderId) {
             case "001":
                 return array(
+                    "orderId" => "001",
                     "completed" => false,
                     "ltcToken" => null,
                     "orderDate" => "2026-06-13",
@@ -47,6 +48,7 @@ class MockedDatabase
                 );
             case "002":
                 return array(
+                    "orderId" => "002",
                     "completed" => true,
                     "ltcToken" => null,
                     "orderDate" => "2026-06-13",
@@ -88,6 +90,7 @@ class MockedDatabase
                 );
             case "003":
                 return array(
+                    "orderId" => "003",
                     "completed" => true,
                     "ltcToken" => "03579594-d1db-4621-b4c5-8b5e88024e18",
                     "orderDate" => "2026-06-13",
@@ -129,6 +132,7 @@ class MockedDatabase
                 );
             case "004":
                 return array(
+                    "orderId" => "004",
                     "completed" => true,
                     "ltcToken" => null,
                     "orderDate" => "2026-06-13",
@@ -154,6 +158,7 @@ class MockedDatabase
                 );
             case "005":
                 return array(
+                    "orderId" => "005",
                     "completed" => true,
                     "ltcToken" => null,
                     "orderDate" => "2021-06-13",

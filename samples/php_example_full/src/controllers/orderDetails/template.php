@@ -30,7 +30,7 @@
 
         <?php if ($LTCBannerUrl !== null) : ?>
             <div class="banner-wrapper">
-                <iframe src="<?php echo $LTCBannerUrl ?>?hash=<?php echo hash('sha256', $orderId) ?>"
+                <iframe src="<?php echo $LTCBannerUrl ?>"
                         id="ltc-banner-iframe" width="100%" height="170px"></iframe>
             </div>
         <?php endif; ?>
@@ -107,6 +107,10 @@
             }
 
             if (msg.event === 'ltc_open') {
+                /**
+                 * Poniższy kod inicjuje LabTest Checker korzystając z ajax-api.
+                 * Jeśli Twój system wymaga odświeżenia strony w celu załadowania LabTest Checkera, możesz pominąć poniższy kod i przeprowadzić przekierowanie na odpowiedni adres
+                 */
                 const labTestCheckerFrameWrapper = document.getElementById('labTestCheckerFrameWrapper');
                 const ltcLoader = document.getElementById('ltcLoader');
 
